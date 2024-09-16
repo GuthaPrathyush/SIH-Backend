@@ -1,7 +1,9 @@
 from flask import Flask, request
 from get_response import load_and_get_district_data
+from flask_cors import CORS
 
 app = Flask('__name__')
+CORS(app=app, origin='*', methods=['GET', 'POST'])
 
 @app.route('/getresponse', methods=['POST'])
 def getresponse():
@@ -15,5 +17,5 @@ def getresponse():
     return load_and_get_district_data(csv_file=csv_file, district_name=district)
 
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
